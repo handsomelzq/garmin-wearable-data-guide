@@ -1,0 +1,9 @@
+[
+  {
+    "subject_id": "SAMPLE_001",
+    "account_env": "GARMIN_ACCOUNT_001",
+    "password_env": "GARMIN_PASSWORD_001",
+    "is_cn": true,
+    "wears_band": true
+  }
+]

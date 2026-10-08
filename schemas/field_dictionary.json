@@ -1,0 +1,590 @@
+[
+  {
+    "sheet": "daily_data",
+    "field": "subject_id",
+    "meaning_zh": "受试者编码",
+    "unit": "文本标识",
+    "source_and_rule_zh": "数据整理时生成，使用本地配置提供的受访者编号"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "local_date",
+    "meaning_zh": "本地日期",
+    "unit": "YYYY-MM-DD",
+    "source_and_rule_zh": "按 Asia/Shanghai 归属日整理"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "heart_rate_observation_count",
+    "meaning_zh": "当天有效心率观测数",
+    "unit": "次",
+    "source_and_rule_zh": "FIT monitoring有效心率30≤HR<255；按原始时刻和值去重后计数，分钟无读数计数为0"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "heart_rate_mean_bpm",
+    "meaning_zh": "当天有效心率均值",
+    "unit": "bpm",
+    "source_and_rule_zh": "FIT 解码 csv/monitoring.csv；按 local_date 聚合"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "heart_rate_min_bpm",
+    "meaning_zh": "当天有效心率最小值",
+    "unit": "bpm",
+    "source_and_rule_zh": "FIT 解码 csv/monitoring.csv；按 local_date 聚合"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "heart_rate_max_bpm",
+    "meaning_zh": "当天有效心率最大值",
+    "unit": "bpm",
+    "source_and_rule_zh": "FIT 解码 csv/monitoring.csv；按 local_date 聚合"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "fit_cycles",
+    "meaning_zh": "FIT 重算累计步数的周期折算值",
+    "unit": "步周期/原始计数",
+    "source_and_rule_zh": "FIT csv/monitoring.csv；按活动类型取每日最大值后汇总，主要用于核查"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "distance_m",
+    "meaning_zh": "官方日距离",
+    "unit": "m",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：totalDistanceMeters；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "active_calories_kcal",
+    "meaning_zh": "官方日活动热量",
+    "unit": "kcal",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：activeKilocalories；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "active_time_s",
+    "meaning_zh": "官方日活动时间",
+    "unit": "s",
+    "source_and_rule_zh": "服务器日汇总：activeSeconds + highlyActiveSeconds；任一缺失则为空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "resting_heart_rate_bpm",
+    "meaning_zh": "当天静息心率",
+    "unit": "bpm",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：restingHeartRate；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "stress_valid_observation_count",
+    "meaning_zh": "有效压力观测数",
+    "unit": "次",
+    "source_and_rule_zh": "FIT stress_level_value在0—100内的有效记录数；负值及异常值不参与统计"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "stress_mean_score",
+    "meaning_zh": "有效压力均值",
+    "unit": "0–100等级",
+    "source_and_rule_zh": "FIT csv/stress_level.csv；按 local_date 聚合"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "stress_max_score",
+    "meaning_zh": "有效压力最大值",
+    "unit": "0–100等级",
+    "source_and_rule_zh": "FIT csv/stress_level.csv"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "stress_observation_count",
+    "meaning_zh": "压力原始观测总数",
+    "unit": "次",
+    "source_and_rule_zh": "FIT csv/stress_level.csv；含无法测量记录"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "stress_valid_percent",
+    "meaning_zh": "压力有效率",
+    "unit": "%",
+    "source_and_rule_zh": "stress_valid_observation_count / stress_observation_count × 100；无原始记录时为空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "moderate_intensity_minutes",
+    "meaning_zh": "中等强度分钟",
+    "unit": "min",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：moderateIntensityMinutes；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "vigorous_intensity_minutes",
+    "meaning_zh": "高强度分钟",
+    "unit": "min",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：vigorousIntensityMinutes；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "weighted_intensity_minutes",
+    "meaning_zh": "加权强度分钟",
+    "unit": "min",
+    "source_and_rule_zh": "moderate_intensity_minutes + 2×vigorous_intensity_minutes；任一缺失则为空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "floors_ascended_m",
+    "meaning_zh": "上楼/上升高度",
+    "unit": "m",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：floorsAscendedInMeters；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "floors_descended_m",
+    "meaning_zh": "下楼/下降高度",
+    "unit": "m",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：floorsDescendedInMeters；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "body_battery_highest",
+    "meaning_zh": "当天身体电量最高值",
+    "unit": "分值 0–100",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：bodyBatteryHighestValue；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "body_battery_lowest",
+    "meaning_zh": "当天身体电量最低值",
+    "unit": "分值 0–100",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：bodyBatteryLowestValue；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "body_battery_charged",
+    "meaning_zh": "当天身体电量累计充电量",
+    "unit": "分值",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：bodyBatteryChargedValue；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "body_battery_drained",
+    "meaning_zh": "当天身体电量累计消耗量",
+    "unit": "分值",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：bodyBatteryDrainedValue；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "body_battery_at_wake",
+    "meaning_zh": "起床时身体电量",
+    "unit": "分值 0–100",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：bodyBatteryAtWakeTime；源字段缺失时留空"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_record_valid",
+    "meaning_zh": "睡眠记录是否通过项目质控",
+    "unit": "布尔值",
+    "source_and_rule_zh": "服务器睡眠JSON及项目质控，原因见data/<编号>/sleep/sleep_nightly.csv"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_duration_minutes",
+    "meaning_zh": "睡眠持续时间",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠 JSON；按起床日期合并"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_start_local",
+    "meaning_zh": "入睡时间",
+    "unit": "本地日期时间",
+    "source_and_rule_zh": "官网睡眠 JSON；Asia/Shanghai"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_end_local",
+    "meaning_zh": "起床时间",
+    "unit": "本地日期时间",
+    "source_and_rule_zh": "官网睡眠 JSON；Asia/Shanghai"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "deep_sleep_minutes",
+    "meaning_zh": "深睡时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠分期 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "light_sleep_minutes",
+    "meaning_zh": "浅睡时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠分期 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "rem_sleep_minutes",
+    "meaning_zh": "REM睡眠时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠分期 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "awake_minutes",
+    "meaning_zh": "清醒时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠分期 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "unmeasurable_sleep_minutes",
+    "meaning_zh": "无法测量时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠分期 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "nap_minutes",
+    "meaning_zh": "小睡时长",
+    "unit": "min",
+    "source_and_rule_zh": "官网睡眠 JSON"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_heart_rate_mean_bpm",
+    "meaning_zh": "睡眠期间平均心率",
+    "unit": "bpm",
+    "source_and_rule_zh": "官网睡眠 JSON/睡眠汇总"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_resting_heart_rate_bpm",
+    "meaning_zh": "睡眠记录中的静息心率",
+    "unit": "bpm",
+    "source_and_rule_zh": "官网睡眠 JSON/睡眠汇总"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_stress_mean_score",
+    "meaning_zh": "睡眠期间平均压力",
+    "unit": "0–100等级",
+    "source_and_rule_zh": "官网睡眠 JSON/睡眠汇总"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "sleep_body_battery_change",
+    "meaning_zh": "睡眠期间身体电量变化",
+    "unit": "分值",
+    "source_and_rule_zh": "官网睡眠 JSON/睡眠汇总"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "running_steps",
+    "meaning_zh": "跑步步数",
+    "unit": "步",
+    "source_and_rule_zh": "FIT csv/monitoring.csv；running 活动类型累计值"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "walking_steps",
+    "meaning_zh": "步行步数",
+    "unit": "步",
+    "source_and_rule_zh": "FIT csv/monitoring.csv；walking 活动类型累计值"
+  },
+  {
+    "sheet": "daily_data",
+    "field": "official_total_steps",
+    "meaning_zh": "官方日总步数",
+    "unit": "步",
+    "source_and_rule_zh": "Garmin Connect服务器日汇总 official/json/<日期>.json：totalSteps；源字段缺失时留空"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "subject_id",
+    "meaning_zh": "受试者编码",
+    "unit": "文本标识",
+    "source_and_rule_zh": "数据整理时生成"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "source_file",
+    "meaning_zh": "心率或压力来源FIT文件名",
+    "unit": "文本文件名",
+    "source_and_rule_zh": "本分钟压力、有效心率及有效血氧的来源文件并集，分号分隔"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "minute_start_local",
+    "meaning_zh": "分钟起始时间",
+    "unit": "北京时间 YYYY-MM-DD HH:mm",
+    "source_and_rule_zh": "由 FIT 时间戳统一转换为 Asia/Shanghai，并向下归入对应分钟。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "local_date",
+    "meaning_zh": "本地日期",
+    "unit": "YYYY-MM-DD",
+    "source_and_rule_zh": "由北京时间分钟键提取；每天固定1440行。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "stress_record_time_utc",
+    "meaning_zh": "该分钟首条压力记录的原始时间",
+    "unit": "UTC日期时间",
+    "source_and_rule_zh": "csv/stress_level.csv；本列为UTC，local_time为UTC+8。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "stress_score",
+    "meaning_zh": "该分钟有效压力读数的均值",
+    "unit": "0–100分",
+    "source_and_rule_zh": "csv/stress_level.csv；去除跨文件重复记录；仅0–100参与均值；负值或缺测留空，不插值。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "manufacturer_field_2",
+    "meaning_zh": "未公开字段2的末条非空值",
+    "unit": "未核定",
+    "source_and_rule_zh": "FIT压力表厂商字段；未验证含义，仅保留备查，不作生理指标解释。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "body_battery_score_estimate",
+    "meaning_zh": "分钟身体电量均值（项目解释）",
+    "unit": "分值",
+    "source_and_rule_zh": "FIT压力表字段3；为既有项目解释，非官方公开字段定义。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "manufacturer_status_code",
+    "meaning_zh": "未公开状态码的末条非空值",
+    "unit": "状态码",
+    "source_and_rule_zh": "FIT压力表字段4；保留代码不取平均，不直接据此推断未佩戴。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "heart_rate_mean_bpm",
+    "meaning_zh": "该分钟有效心率读数的均值",
+    "unit": "bpm（次/分钟）",
+    "source_and_rule_zh": "FIT monitoring心率30≤HR<255；按原始时刻和值去重后分钟算术均值；缺测留空"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "heart_rate_observation_count",
+    "meaning_zh": "该分钟去重后有效心率观测数",
+    "unit": "次",
+    "source_and_rule_zh": "FIT monitoring有效心率30≤HR<255；按原始时刻和值去重后计数，分钟无读数计数为0"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "stress_valid_observation_count",
+    "meaning_zh": "该分钟去重后有效压力观测数",
+    "unit": "次",
+    "source_and_rule_zh": "FIT stress_level_value在0—100内的有效记录数；负值及异常值不参与统计"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "stress_raw_observation_count",
+    "meaning_zh": "该分钟去重后压力观测总数",
+    "unit": "次",
+    "source_and_rule_zh": "包括负值状态记录；无记录为0；不是压力大小或秒数。"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "spo2_reading_time_local",
+    "meaning_zh": "血氧测量本地时间",
+    "unit": "北京时间日期时间",
+    "source_and_rule_zh": "该分钟第一条有效FIT血氧读数的真实时间，Asia/Shanghai"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "spo2_reading_time_utc",
+    "meaning_zh": "血氧测量原始时间",
+    "unit": "UTC 日期时间",
+    "source_and_rule_zh": "该分钟第一条有效FIT血氧读数的真实时间，UTC"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "spo2_percent",
+    "meaning_zh": "该分钟有效血氧读数均值",
+    "unit": "%",
+    "source_and_rule_zh": "FIT真实血氧记录；同一分钟多条有效观测取均值，不用服务器日均或小时均值展开"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "spo2_confidence_score",
+    "meaning_zh": "该分钟血氧置信度均值",
+    "unit": "分值（官方未定义单位）",
+    "source_and_rule_zh": "FIT reading_confidence分钟均值，不能解释为准确率百分比"
+  },
+  {
+    "sheet": "minute_data",
+    "field": "spo2_measurement_mode",
+    "meaning_zh": "血氧测量模式",
+    "unit": "文本/代码",
+    "source_and_rule_zh": "FIT血氧mode的分钟去重集合，分号分隔；代码不取平均"
+  },
+  {
+    "sheet": "activities",
+    "field": "subject_id",
+    "meaning_zh": "受试者编码",
+    "unit": "文本标识",
+    "source_and_rule_zh": "数据整理时增加"
+  },
+  {
+    "sheet": "activities",
+    "field": "activity_id",
+    "meaning_zh": "活动唯一编号",
+    "unit": "整数ID",
+    "source_and_rule_zh": "Garmin Connect 活动摘要 raw/activities/activities.json"
+  },
+  {
+    "sheet": "activities",
+    "field": "activity_type",
+    "meaning_zh": "活动类型英文代码",
+    "unit": "文本",
+    "source_and_rule_zh": "官网活动摘要activityType.typeKey"
+  },
+  {
+    "sheet": "activities",
+    "field": "activity_start_local",
+    "meaning_zh": "活动开始本地时间",
+    "unit": "本地日期时间",
+    "source_and_rule_zh": "Garmin Connect 活动摘要 startTimeLocal"
+  },
+  {
+    "sheet": "activities",
+    "field": "is_favorite",
+    "meaning_zh": "是否标记为最爱",
+    "unit": "布尔值",
+    "source_and_rule_zh": "Garmin Connect 活动摘要 isFavorite"
+  },
+  {
+    "sheet": "activities",
+    "field": "activity_name",
+    "meaning_zh": "活动标题",
+    "unit": "文本",
+    "source_and_rule_zh": "Garmin Connect 活动摘要 activityName"
+  },
+  {
+    "sheet": "activities",
+    "field": "distance_km",
+    "meaning_zh": "活动距离",
+    "unit": "km",
+    "source_and_rule_zh": "活动摘要 distance（m）换算"
+  },
+  {
+    "sheet": "activities",
+    "field": "calories_kcal",
+    "meaning_zh": "活动消耗热量",
+    "unit": "kcal",
+    "source_and_rule_zh": "活动摘要 calories"
+  },
+  {
+    "sheet": "activities",
+    "field": "duration_s",
+    "meaning_zh": "活动计时器时长",
+    "unit": "s",
+    "source_and_rule_zh": "活动摘要 duration"
+  },
+  {
+    "sheet": "activities",
+    "field": "average_heart_rate_bpm",
+    "meaning_zh": "活动平均心率",
+    "unit": "bpm",
+    "source_and_rule_zh": "活动摘要 averageHR"
+  },
+  {
+    "sheet": "activities",
+    "field": "maximum_heart_rate_bpm",
+    "meaning_zh": "活动最大心率",
+    "unit": "bpm",
+    "source_and_rule_zh": "活动摘要 maxHR"
+  },
+  {
+    "sheet": "activities",
+    "field": "average_cadence_spm",
+    "meaning_zh": "平均步频",
+    "unit": "steps/min",
+    "source_and_rule_zh": "活动摘要 averageRunningCadenceInStepsPerMinute"
+  },
+  {
+    "sheet": "activities",
+    "field": "maximum_cadence_spm",
+    "meaning_zh": "最大步频",
+    "unit": "steps/min",
+    "source_and_rule_zh": "活动摘要 maxRunningCadenceInStepsPerMinute"
+  },
+  {
+    "sheet": "activities",
+    "field": "average_pace_min_per_km",
+    "meaning_zh": "平均配速",
+    "unit": "min/km（数值）",
+    "source_and_rule_zh": "由活动速度m/s转换：1000/(speed×60)，速度≤0留空"
+  },
+  {
+    "sheet": "activities",
+    "field": "best_pace_min_per_km",
+    "meaning_zh": "最佳配速",
+    "unit": "min/km（数值）",
+    "source_and_rule_zh": "由活动速度m/s转换：1000/(speed×60)，速度≤0留空"
+  },
+  {
+    "sheet": "activities",
+    "field": "average_stride_length_m",
+    "meaning_zh": "平均步长",
+    "unit": "m",
+    "source_and_rule_zh": "活动摘要avgStrideLength，厘米除100转换为米"
+  },
+  {
+    "sheet": "activities",
+    "field": "training_stress_score",
+    "meaning_zh": "训练压力分数",
+    "unit": "分值",
+    "source_and_rule_zh": "活动摘要不存在相应字段时留空，不填默认0或否"
+  },
+  {
+    "sheet": "activities",
+    "field": "activity_steps",
+    "meaning_zh": "活动步数",
+    "unit": "步",
+    "source_and_rule_zh": "活动摘要 steps"
+  },
+  {
+    "sheet": "activities",
+    "field": "stress_relief_activity",
+    "meaning_zh": "是否减压活动",
+    "unit": "文本/是否",
+    "source_and_rule_zh": "活动摘要不存在相应字段时留空，不填默认0或否"
+  },
+  {
+    "sheet": "activities",
+    "field": "best_lap_duration_s",
+    "meaning_zh": "最佳单圈时间",
+    "unit": "s",
+    "source_and_rule_zh": "活动摘要 minActivityLapDuration"
+  },
+  {
+    "sheet": "activities",
+    "field": "lap_count",
+    "meaning_zh": "活动圈数",
+    "unit": "圈",
+    "source_and_rule_zh": "活动摘要 lapCount"
+  },
+  {
+    "sheet": "activities",
+    "field": "moving_duration_s",
+    "meaning_zh": "移动时长",
+    "unit": "s",
+    "source_and_rule_zh": "活动摘要 movingDuration"
+  },
+  {
+    "sheet": "activities",
+    "field": "elapsed_duration_s",
+    "meaning_zh": "全程耗时",
+    "unit": "s",
+    "source_and_rule_zh": "活动摘要 elapsedDuration"
+  }
+]
